@@ -10,7 +10,7 @@ module baudrate #(
 );
 
     reg [7:0] cnt;
-    reg [4:0] tx_cnt;
+    reg [7:0] tx_cnt;
     always @(posedge clk or negedge rstb) begin
         if(~rstb) begin
             cnt <= 0;

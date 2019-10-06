@@ -20,7 +20,7 @@ module receiver#(
     reg [8:0] rx_data;
 
     reg [3:0] bit_sel;
-    reg [4:0] sample;
+    reg [7:0] sample;
 
     assign data = rx_data[8:1];
 

@@ -1,17 +1,17 @@
-module uart_top (
-    input clk,
-    input rstb,
-    input [7:0] baudrate_cfg, //clk_en will go to 1 every (50000000/(baudrate_cfg+1)). 216: 9600; 108: 19200; 52: 38400; 36: 57600;  18: 115200; 9: 230400; 
-    input rx,
-    output tx,
-    input wr_en,
-    input [7:0] wr_data,
-    output tx_busy,
-    output rx_valid,
-    output [7:0] rx_data
+module uart (
+    input           clk,
+    input           rstb,
+    input [7:0]     baudrate_cfg, 
+    input           rx,
+    output          tx,
+    input           tx_valid,
+    input [7:0]     tx_data,
+    output          tx_busy,
+    output          rx_valid,
+    output [7:0]    rx_data
 );
 
-    localparam SAMPLE_RATE = 24;
+    localparam SAMPLE_RATE = 62;
 
     baudrate #(
         .CLK_FREQ(50000000),
@@ -29,8 +29,8 @@ module uart_top (
         .clk_en(tx_clk_en),
         .rstb(rstb),
     
-        .wr_en(wr_en),
-        .data(wr_data),
+        .wr_en(tx_valid),
+        .data(tx_data),
     
         .tx(tx),
         .tx_busy(tx_busy)
