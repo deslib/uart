@@ -12,6 +12,8 @@ module uart (
 );
 
     localparam SAMPLE_RATE = 62;
+    wire rx_clk_en;
+    wire tx_clk_en;
 
     baudrate #(
         .CLK_FREQ(50000000),
